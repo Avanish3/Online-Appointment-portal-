@@ -39,9 +39,6 @@ window.onload = function () {
 document.getElementById("generateBtn").addEventListener("click", function () {
   let name = document.getElementById("name").value;
   let phone = document.getElementById("phone").value;
-
-    
-    const doctor = document.getElementById("doctor").value;
     
   if (name === "" || phone === "") {
     alert("Please fill all fields");
