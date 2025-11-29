@@ -1,6 +1,5 @@
 
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,37 +9,42 @@
 </head>
 <body>
 
-<header>
+<div class="container">
     <h1>Book Appointment</h1>
-    <nav>
-        <a href="index.html">Home</a> |
-        <a href="book.html">Book Appointment</a> |
-        <a href="appointments.html">Appointments</a>
-    </nav>
-</header>
 
-<main>
-    <section id="book">
-        <h2>Fill Appointment Details</h2>
-
+    <form onsubmit="saveAppointment(event)">
+        
         <label>Patient Name:</label>
-        <input type="text" id="name" placeholder="Enter patient name">
-
-        <label>Select Doctor:</label>
-        <select id="doctor">
-            <option value="">Select Doctor</option>
-        </select>
+        <input type="text" id="name" required>
 
         <label>Phone Number:</label>
-        <input type="text" id="phone" placeholder="Enter phone number">
+        <input type="text" id="phone" required>
 
-        <button id="generateBtn">Generate Appointment</button>
+        <label>Select Doctor:</label>
+        <select id="doctor" required>
+            <option value="">-- Select Doctor --</option>
+            <option value="Dr. Sharma">Dr. Sharma</option>
+            <option value="Dr. Mehta">Dr. Mehta</option>
+            <option value="Dr. Verma">Dr. Verma</option>
+        </select>
 
-        <div id="output" style="display:none; margin-top:20px;"></div>
-    </section>
-</main>
+        <label>Select Date:</label>
+        <input type="date" id="date" required>
+
+        <label>Select Time:</label>
+        <input type="time" id="time" required>
+
+        <button type="submit">Book Now</button>
+    </form>
+
+    <br>
+    <a href="appointments.html">View All Appointments</a>
+</div>
 
 <script src="script.js"></script>
 </body>
 </html>
+
+  
+
 
