@@ -39,7 +39,10 @@ window.onload = function () {
 document.getElementById("generateBtn").addEventListener("click", function () {
   let name = document.getElementById("name").value;
   let phone = document.getElementById("phone").value;
-
+const date = document.getElementById("date").value;
+    Const time = document.getElementById("time").value;
+    const doctor = document.getElementById("doctor").value;
+    
   if (name === "" || phone === "") {
     alert("Please fill all fields");
     return;
