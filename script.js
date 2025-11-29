@@ -1,54 +1,50 @@
-// Doctor List Data
-const doctors = [
-    { name: "Dr. Raj Mehta", specialty: "Cardiologist", experience: "10 years" },
-    { name: "Dr. Priya Sharma", specialty: "Dermatologist", experience: "7 years" },
-    { name: "Dr. Aarav Patel", specialty: "Neurologist", experience: "12 years" }
-];
-// Populate doctor dropdown in Book Appointment Page
-window.addEventListener("DOMContentLoaded", () => {
-    const doctorDropdown = document.getElementById("doctor");
 
-    if (doctorDropdown) {
-        doctors.forEach(doc => {
-            const opt = document.createElement("option");
-            opt.value = doc.name;
-            opt.textContent = `${doc.name} (${doc.specialty})`;
-            doctorDropdown.appendChild(opt);
-        });
-    }
-});
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Appointments</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-// Load doctors on Home Page
-window.onload = function () {
-    let doctorSection = document.getElementById("doctor-list");
-    if (doctorSection) {
-        doctorSection.innerHTML = "";
-        doctors.forEach(doc => {
-            doctorSection.innerHTML += `
-                <div class="doctor-card">
-                    <h3>${doc.name}</h3>
-                    <p><strong>Specialty:</strong> ${doc.specialty}</p>
-                    <p><strong>Experience:</strong> ${doc.experience}</p>
+<div class="container">
+    <h1>All Appointments</h1>
+
+    <div id="appointmentList"></div>
+
+    <br>
+    <a href="index.html">Home</a>
+</div>
+
+<script>
+function loadAppointments() {
+    let list = JSON.parse(localStorage.getItem("appointments")) || [];
+
+    let html = "";
+
+    if (list.length === 0) {
+        html = "<p>No appointments found.</p>";
+    } else {
+        list.forEach((a, index) => {
+            html += `
+                <div class="output" style="display:block;">
+                    <p><strong>${index + 1}. ${a.name}</strong></p>
+                    <p>Phone: ${a.phone}</p>
+                    <p>Doctor: ${a.doctor}</p>
+                    <p>Date: ${a.date}</p>
+                    <p>Time: ${a.time}</p>
                 </div>
-                <hr>
             `;
         });
     }
-};
 
-document.getElementById("generateBtn").addEventListener("click", function () {
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-    
-  if (name === "" || phone === "") {
-    alert("Please fill all fields");
-    return;
-  }
+    document.getElementById("appointmentList").innerHTML = html;
+}
 
-  document.getElementById("output").style.display = "block";
-  document.getElementById("output").innerHTML = `
-    <h3>Generated Data</h3>
-    <p><strong>Name:</strong> ${name}</p>
-    <p><strong>Phone:</strong> ${phone}</p>
-  `;
-});
+loadAppointments();
+</script>
+
+</body>
+</html>
