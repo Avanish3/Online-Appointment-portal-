@@ -4,6 +4,19 @@ const doctors = [
     { name: "Dr. Priya Sharma", specialty: "Dermatologist", experience: "7 years" },
     { name: "Dr. Aarav Patel", specialty: "Neurologist", experience: "12 years" }
 ];
+// Populate doctor dropdown in Book Appointment Page
+window.addEventListener("DOMContentLoaded", () => {
+    const doctorDropdown = document.getElementById("doctor");
+
+    if (doctorDropdown) {
+        doctors.forEach(doc => {
+            const opt = document.createElement("option");
+            opt.value = doc.name;
+            opt.textContent = `${doc.name} (${doc.specialty})`;
+            doctorDropdown.appendChild(opt);
+        });
+    }
+});
 
 // Load doctors on Home Page
 window.onload = function () {
