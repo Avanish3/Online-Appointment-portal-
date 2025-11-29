@@ -1,36 +1,49 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Appointments</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+// SAVE APPOINTMENT
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("appointmentForm");
 
-<div class="container">
-    <h1>All Appointments</h1>
+    if (form) {
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
 
-    <div id="appointmentList"></div>
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const doctor = document.getElementById("doctor").value;
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
 
-    <br>
-    <a href="index.html">Home</a>
-</div>
+            if (!name || !phone || !doctor || !date || !time) {
+                alert("Please fill all fields");
+                return;
+            }
 
-<script>
-function loadAppointments() {
-    let list = JSON.parse(localStorage.getItem("appointments")) || [];
+            let list = JSON.parse(localStorage.getItem("appointments")) || [];
+            list.push({ name, phone, doctor, date, time });
 
-    let html = "";
+            localStorage.setItem("appointments", JSON.stringify(list));
 
-    if (list.length === 0) {
-        html = "<p>No appointments found.</p>";
-    } else {
-        list.forEach((a, index) => {
+            alert("Appointment booked successfully!");
+            window.location.href = "appointments.html";
+        });
+    }
+
+    // LOAD APPOINTMENTS PAGE
+    const appointmentListDiv = document.getElementById("appointmentList");
+    
+    if (appointmentListDiv) {
+        let list = JSON.parse(localStorage.getItem("appointments")) || [];
+
+        if (list.length === 0) {
+            appointmentListDiv.innerHTML = "<p>No appointments found.</p>";
+            return;
+        }
+
+        let html = "";
+        list.forEach((a, i) => {
             html += `
-                <div class="output" style="display:block;">
-                    <p><strong>${index + 1}. ${a.name}</strong></p>
+                <div class="card">
+                    <h3>${i + 1}. ${a.name}</h3>
                     <p>Phone: ${a.phone}</p>
                     <p>Doctor: ${a.doctor}</p>
                     <p>Date: ${a.date}</p>
@@ -38,13 +51,8 @@ function loadAppointments() {
                 </div>
             `;
         });
+
+        appointmentListDiv.innerHTML = html;
     }
+});
 
-    document.getElementById("appointmentList").innerHTML = html;
-}
-
-loadAppointments();
-</script>
-
-</body>
-</html>
