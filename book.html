@@ -9,11 +9,19 @@
 </head>
 <body>
 
-<div class="container">
+<header>
     <h1>Book Appointment</h1>
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="book.html">Book Appointment</a> |
+        <a href="appointments.html">Appointments</a>
+    </nav>
+</header>
 
-    <form onsubmit="saveAppointment(event)">
-        
+<div class="container">
+
+    <form id="appointmentForm">
+
         <label>Patient Name:</label>
         <input type="text" id="name" required>
 
@@ -22,7 +30,7 @@
 
         <label>Select Doctor:</label>
         <select id="doctor" required>
-            <option value="">-- Select Doctor --</option>
+            <option value="">-- Select --</option>
             <option value="Dr. Sharma">Dr. Sharma</option>
             <option value="Dr. Mehta">Dr. Mehta</option>
             <option value="Dr. Verma">Dr. Verma</option>
@@ -37,13 +45,12 @@
         <button type="submit">Book Now</button>
     </form>
 
-    <br>
-    <a href="appointments.html">View All Appointments</a>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
+
 
   
 
